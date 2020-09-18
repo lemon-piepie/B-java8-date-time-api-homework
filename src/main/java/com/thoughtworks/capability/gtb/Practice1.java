@@ -15,12 +15,14 @@ public class Practice1 {
 
   public static long getDaysBetweenNextLaborDay(LocalDate date) {
     LocalDate nextMayFirstDay;
-    if ( date.isBefore(LocalDate.of(date.getYear(),5,1))){
-      nextMayFirstDay = LocalDate.of(date.getYear(),5,1);
+    int year = date.getYear();
+    LocalDate laborDayOfThisYear = LocalDate.of(year,5,1);
+    //todo date.getYear
+    if ( date.isBefore(laborDayOfThisYear)){
+      nextMayFirstDay = laborDayOfThisYear;
     }else{
-      nextMayFirstDay = LocalDate.of(date.getYear()+1,5,1);
+      nextMayFirstDay = laborDayOfThisYear.withYear(year+1);
     }
-    long daysBetweenNextLaborDay = date.until(nextMayFirstDay, ChronoUnit.DAYS);
-    return daysBetweenNextLaborDay;
+    return date.until(nextMayFirstDay, ChronoUnit.DAYS);
   }
 }
